@@ -1,30 +1,44 @@
-# Ecommerce Data Pipeline (Python ETL)
+# 🛒 Professional Ecommerce Data Pipeline & REST API
 
-[![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)](https://www.python.org/)
-[![Docker](https://img.shields.io/badge/docker-enabled-cyan)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Framework-Flask-lightgrey?logo=flask)](https://flask.palletsprojects.com/)
+[![JWT](https://img.shields.io/badge/Auth-JWT-black?logo=json-web-tokens)](https://jwt.io/)
+[![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite)](https://www.sqlite.org/)
 
 ## 📌 Project Overview
-This repository contains a modular **ETL (Extract, Transform, Load)** pipeline designed to automate data ingestion for e-commerce platforms. The system is built to handle supplier data from JSON sources, apply business-logic validation, and persist clean data into a relational SQL database.
+This is a high-performance, modular backend system for an E-commerce platform. It integrates a **Python ETL Pipeline** with a **RESTful API** layer, featuring secure user authentication and transactional order management.
 
-The project reflects my transition from direct e-commerce management to **Software Engineering**, applying professional patterns to real-world business problems.
+Designed with **enterprise-grade patterns**, this project demonstrates the transition from raw data processing to a scalable, secure web architecture.
 
-## 🛠️ Technical Architecture & Patterns
-To ensure scalability and maintainability, the project follows several key engineering principles:
+## 🚀 Key Features & Engineering Patterns
 
-* **Separation of Concerns (SoC)**: Logic is split into dedicated modules for Database management, ETL logic, and Utility decorators.
-* **Decorator Pattern**: Implemented custom Python decorators for automated logging and execution monitoring, keeping the business logic clean and "DRY" (Don't Repeat Yourself).
-* **Data Integrity Layer**: A transformation step filters out invalid entries (e.g., negative pricing or missing mandatory fields) before database ingestion.
-* **Containerization**: Fully Dockerized to ensure environment parity across development and production.
+### 🔐 Advanced Security & Auth
+- **JWT (JSON Web Tokens)**: Stateless authentication implemented via custom Python decorators for protected routes.
+- **Security First**: Password hashing using **SHA-256** to ensure data protection at rest.
+- **Role-Based Access**: Separation between public endpoints (Product Catalog) and protected transactional endpoints (Checkout).
+
+### 🏛️ Modular Architecture (Service Layer Pattern)
+To ensure the **Single Responsibility Principle**, the logic is decoupled into:
+- **API Routes**: Handling HTTP requests/responses using Flask Blueprints.
+- **Service Layer**: Business logic isolation (Validation, Hashing, Formatting).
+- **Data Access Layer**: Relational mapping and persistence with SQLite.
+
+### 🛠️ Robustness & DevOps
+- **Centralized Error Handling**: Custom exception mapping to standardized JSON responses.
+- **Data Validation**: Strict integrity checks on prices, user inputs, and relational foreign keys.
+- **Containerization**: Fully Dockerized for environment consistency.
 
 ## 📂 Project Structure
 ```text
 .
-├── main.py              # Application Entry Point
-├── Dockerfile           # Container configuration
-├── requirements.txt     # Dependency management
-├── data/                # Raw input data (JSON/CSV)
-└── src/                 # Core logic
-    ├── database.py      # SQLite connection & ORM-like logic
-    ├── pipeline.py      # ETL process (Extract-Transform-Load)
-    └── decorators.py    # Custom functional wrappers
+├── app.py              # Server Entry Point & Global Config
+├── src/
+│   ├── api_routes.py    # Modular API Endpoints (Blueprints)
+│   ├── auth.py          # JWT Middleware & Decorators
+│   ├── database.py      # Relational DB Schema & Logic
+│   ├── services.py      # Product Domain Logic
+│   ├── user_service.py   # Auth & User Domain Logic
+│   ├── order_service.py  # Transactional Order Logic
+│   ├── exceptions.py    # Custom Exception Classes
+│   └── decorators.py    # Execution & Logging Wrappers
+└── Dockerfile           # Deployment Configuration

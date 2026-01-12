@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Servizio Backend (Python/Flask)
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - FLASK_ENV=development
+
+  # Servizio Frontend (React/Vite)
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Evita conflitti con i moduli locali
+    stdin_open: true # Necessario per Vite
+    tty: true
+    depends_on:
+      - backend
