@@ -1,0 +1,5 @@
+[
+    {"name": "Router Cisco ISR", "price": 450.00, "category": "Networking"},
+    {"name": "Switch Microtik", "price": 120.50, "category": "Networking"},
+    {"name": "Cavo Ethernet errato", "price": -10.00, "category": "Cavi"}
+]
