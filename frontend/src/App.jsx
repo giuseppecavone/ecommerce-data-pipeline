@@ -1,29 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Login from './pages/Login';
+import { Routes, Route } from 'react-router-dom';
 import Register from './pages/Register';
-
-
-
-// Se hai creato anche il carrello, importalo qui
+import Login from './pages/Login';
+import Navbar from './components/Navbar'; // Se l'hai creato, altrimenti commentalo
 
 function App() {
-  console.log("App caricata!");
   return (
-    <Router>
-      <div className="min-vh-100 bg-light">
-        {/* La Navbar rimane fissa in alto su tutte le pagine */}
-        <Navbar /> 
-        
-        {/* Qui cambiano i contenuti in base all'URL */}
+    <>
+      <Navbar />
+      <div className="container mt-4">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<h1 className="text-center">Home Page</h1>} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
-    </Router>
+    </>
   );
 }
 
